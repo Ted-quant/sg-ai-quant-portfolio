@@ -1,0 +1,6 @@
+ticker,news_count,average_sentiment,total_sentiment,overall_label
+DBS,2,0.0,0,Neutral
+MSFT,2,-0.5,-1,Negative
+NVDA,2,0.0,0,Neutral
+QQQ,2,0.0,0,Neutral
+SPY,2,-0.5,-1,Negative
