@@ -71,6 +71,16 @@ def apply_strategy_rule(df, strategy_name):
             0
         )
 
+    elif strategy_name == "Breakout_60D":
+        # Buy when today's close breaks above yesterday's 60-day high
+        df["rolling_60d_high"] = df["Close"].rolling(window=60).max().shift(1)
+
+        df["position"] = np.where(
+            df["Close"] > df["rolling_60d_high"],
+            1,
+            0
+        )
+
     elif strategy_name == "Buy_and_Hold":
         # Always invested
         df["position"] = 1
@@ -169,7 +179,8 @@ if __name__ == "__main__":
         "Buy_and_Hold",
         "Current_Defensive",
         "Trend_Only",
-        "Loose_RSI"
+        "Loose_RSI",
+        "Breakout_60D"
     ]
 
     os.makedirs("backtest/results", exist_ok=True)
