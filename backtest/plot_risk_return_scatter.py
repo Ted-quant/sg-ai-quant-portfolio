@@ -1,6 +1,7 @@
 # Project: sg-ai-quant-portfolio
 # Author: Chae Youngjun
-# Description: Create full and zoomed risk-return scatter plots for portfolio presentation
+# Description: Create professional Day 11 risk-return scatter plots
+# Output folder: reports/charts/
 
 import os
 import platform
@@ -91,7 +92,7 @@ def plot_risk_return_scatter(df, output_path, title, note):
     ax.grid(True, alpha=0.25)
     ax.legend(title="Strategy", bbox_to_anchor=(1.05, 1), loc="upper left")
 
-    # Add a small note below the chart instead of a subtitle
+    # Add a short note below the chart instead of a subtitle
     fig.text(
         0.01,
         0.01,
@@ -119,7 +120,7 @@ if __name__ == "__main__":
     risk_df = load_risk_summary(input_path)
     plot_df = prepare_plot_data(risk_df)
 
-    # Chart 1: Full universe including NVDA
+    # Chart 1: Full view including NVDA
     full_output_path = f"{output_folder}/risk_return_scatter_full.png"
 
     plot_risk_return_scatter(
@@ -140,4 +141,4 @@ if __name__ == "__main__":
         note="Note: NVDA is excluded only for visualization clarity; it remains included in the full analysis."
     )
 
-    print("\nProfessional risk-return scatter charts created successfully.")
+    print("\nDay 11 risk-return scatter charts created successfully.")

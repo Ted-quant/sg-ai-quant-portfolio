@@ -1,6 +1,7 @@
 # Project: sg-ai-quant-portfolio
 # Author: Chae Youngjun
-# Description: Create professional risk management charts for portfolio presentation
+# Description: Create professional Day 11 risk management charts
+# Output folder: reports/charts/
 
 import os
 import platform
@@ -52,20 +53,33 @@ def plot_metric(df, metric, output_path, title, ylabel, convert_to_percent=True,
     if convert_to_percent:
         plot_df[metric] = plot_df[metric] * 100
 
-    pivot_df = plot_df.pivot(index="Ticker", columns="Strategy", values=metric)
+    pivot_df = plot_df.pivot(
+        index="Ticker",
+        columns="Strategy",
+        values=metric
+    )
 
-    ax = pivot_df.plot(kind="bar", figsize=(14, 7))
+    ax = pivot_df.plot(
+        kind="bar",
+        figsize=(14, 7)
+    )
 
-    plt.title(title, fontsize=15, fontweight="bold")
+    plt.title(title, fontsize=15, fontweight="bold", pad=15)
     plt.xlabel("Asset", fontsize=11)
     plt.ylabel(ylabel, fontsize=11)
     plt.xticks(rotation=0)
     plt.grid(axis="y", alpha=0.25)
     plt.legend(title="Strategy", bbox_to_anchor=(1.05, 1), loc="upper left")
 
-    # Add value labels
+    # Add value labels to make chart portfolio-ready
     for container in ax.containers:
-        ax.bar_label(container, fmt="%.2f", fontsize=7, rotation=90, padding=3)
+        ax.bar_label(
+            container,
+            fmt="%.2f",
+            fontsize=7,
+            rotation=90,
+            padding=3
+        )
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=300)
@@ -124,4 +138,4 @@ if __name__ == "__main__":
         use_absolute=False
     )
 
-    print("\nAll professional risk management charts created successfully.")
+    print("\nDay 11 risk management charts created successfully.")

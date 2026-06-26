@@ -1,15 +1,32 @@
 # Project: sg-ai-quant-portfolio
 # Author: Chae Youngjun
-# Description: Risk management analysis for multiple strategies and assets
+# Description: Standardized Day 11 risk management analysis
+# Backtest period: 2022-01-01 to 2024-12-31
 
 import os
 import numpy as np
 import pandas as pd
 
 
-# =========================
-# 1. Performance functions
-# =========================
+START_DATE = "2022-01-01"
+END_DATE = "2024-12-31"
+
+TICKERS = [
+    "NVDA",
+    "MSFT",
+    "SPY",
+    "QQQ",
+    "D05_SI"
+]
+
+STRATEGIES = [
+    "Buy_and_Hold",
+    "Current_Defensive",
+    "Trend_Only",
+    "Loose_RSI",
+    "Breakout_60D"
+]
+
 
 def calculate_max_drawdown(cumulative_return_series):
     """
@@ -29,6 +46,8 @@ def calculate_sharpe_ratio(daily_returns):
     Risk-free rate is assumed to be 0 for simplicity.
     """
 
+    daily_returns = daily_returns.dropna()
+
     if daily_returns.std() == 0:
         return 0
 
@@ -38,8 +57,13 @@ def calculate_sharpe_ratio(daily_returns):
 def calculate_var_95(daily_returns):
     """
     Calculate historical 95% Value at Risk.
-    This is the 5th percentile of daily returns.
+    This is the 5th percentile of daily strategy returns.
     """
+
+    daily_returns = daily_returns.dropna()
+
+    if daily_returns.empty:
+        return 0
 
     return daily_returns.quantile(0.05)
 
@@ -47,8 +71,13 @@ def calculate_var_95(daily_returns):
 def calculate_expected_shortfall_95(daily_returns):
     """
     Calculate Expected Shortfall at 95%.
-    This is the average return when returns are worse than VaR.
+    This is the average return when returns are worse than or equal to VaR.
     """
+
+    daily_returns = daily_returns.dropna()
+
+    if daily_returns.empty:
+        return 0
 
     var_95 = calculate_var_95(daily_returns)
     tail_losses = daily_returns[daily_returns <= var_95]
@@ -59,17 +88,18 @@ def calculate_expected_shortfall_95(daily_returns):
     return tail_losses.mean()
 
 
-# =========================
-# 2. Strategy rules
-# =========================
-
 def apply_strategy_rule(df, strategy_name):
     """
     Apply selected strategy rule and create position column.
     Position 1 means invested, 0 means cash.
     """
 
-    if strategy_name == "Current_Defensive":
+    df = df.copy()
+
+    if strategy_name == "Buy_and_Hold":
+        df["position"] = 1
+
+    elif strategy_name == "Current_Defensive":
         df["position"] = np.where(
             (df["MA20"] > df["MA60"]) & (df["RSI"] < 70),
             1,
@@ -100,37 +130,55 @@ def apply_strategy_rule(df, strategy_name):
             0
         )
 
-    elif strategy_name == "Buy_and_Hold":
-        df["position"] = 1
-
     else:
         raise ValueError(f"Unknown strategy name: {strategy_name}")
 
     return df
 
 
-# =========================
-# 3. Risk analysis function
-# =========================
-
-def run_risk_analysis(ticker, strategy_name):
+def load_indicator_data(ticker):
     """
-    Run risk analysis for one ticker and one strategy.
+    Load indicator data for one ticker and apply standardized date filter.
     """
 
     input_path = f"data/raw/{ticker}_with_indicators.csv"
 
     if not os.path.exists(input_path):
-        print(f"Skipped {ticker}: indicator file not found")
+        print(f"Skipped {ticker}: indicator file not found at {input_path}")
         return None
 
     df = pd.read_csv(input_path)
 
     df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
     df["Close"] = pd.to_numeric(df["Close"], errors="coerce")
+    df["MA20"] = pd.to_numeric(df["MA20"], errors="coerce")
+    df["MA60"] = pd.to_numeric(df["MA60"], errors="coerce")
+    df["RSI"] = pd.to_numeric(df["RSI"], errors="coerce")
 
     df = df.dropna(subset=["Date", "Close", "MA20", "MA60", "RSI"])
     df = df.sort_values("Date")
+
+    df = df[
+        (df["Date"] >= START_DATE) &
+        (df["Date"] <= END_DATE)
+    ].copy()
+
+    if df.empty:
+        print(f"Skipped {ticker}: no data available in selected period")
+        return None
+
+    return df
+
+
+def run_risk_analysis(ticker, strategy_name):
+    """
+    Run risk analysis for one ticker and one strategy.
+    """
+
+    df = load_indicator_data(ticker)
+
+    if df is None:
+        return None
 
     df["daily_return"] = df["Close"].pct_change()
 
@@ -141,17 +189,19 @@ def run_risk_analysis(ticker, strategy_name):
 
     df = df.dropna(subset=["strategy_return"])
 
+    if df.empty:
+        print(f"Skipped {ticker} - {strategy_name}: not enough return data")
+        return None
+
     df["cumulative_return"] = (1 + df["strategy_return"]).cumprod()
 
     total_return = df["cumulative_return"].iloc[-1] - 1
     max_drawdown = calculate_max_drawdown(df["cumulative_return"])
     sharpe_ratio = calculate_sharpe_ratio(df["strategy_return"])
-
     annualized_volatility = df["strategy_return"].std() * np.sqrt(252)
-    var_95 = calculate_var_95(df["strategy_return"])
-    expected_shortfall_95 = calculate_expected_shortfall_95(df["strategy_return"])
-
-    exposure = df["position"].mean()
+    daily_var_95 = calculate_var_95(df["strategy_return"])
+    daily_expected_shortfall_95 = calculate_expected_shortfall_95(df["strategy_return"])
+    market_exposure = df["position"].mean()
 
     result = {
         "Ticker": ticker,
@@ -160,21 +210,17 @@ def run_risk_analysis(ticker, strategy_name):
         "Maximum Drawdown": max_drawdown,
         "Sharpe Ratio": sharpe_ratio,
         "Annualized Volatility": annualized_volatility,
-        "Daily VaR 95": var_95,
-        "Daily Expected Shortfall 95": expected_shortfall_95,
-        "Market Exposure": exposure
+        "Daily VaR 95": daily_var_95,
+        "Daily Expected Shortfall 95": daily_expected_shortfall_95,
+        "Market Exposure": market_exposure
     }
 
     return result
 
 
-# =========================
-# 4. Run all risk analysis
-# =========================
-
 def run_all_risk_analysis(tickers, strategies):
     """
-    Run risk analysis for all tickers and strategies.
+    Run risk analysis for all tickers and all strategies.
     """
 
     results = []
@@ -191,34 +237,13 @@ def run_all_risk_analysis(tickers, strategies):
     return pd.DataFrame(results)
 
 
-# =========================
-# 5. Main execution
-# =========================
-
 if __name__ == "__main__":
-
-    tickers = [
-        "NVDA",
-        "MSFT",
-        "SPY",
-        "QQQ",
-        "D05_SI"
-    ]
-
-    strategies = [
-        "Buy_and_Hold",
-        "Current_Defensive",
-        "Trend_Only",
-        "Loose_RSI",
-        "Breakout_60D"
-    ]
 
     os.makedirs("backtest/results", exist_ok=True)
 
-    risk_df = run_all_risk_analysis(tickers, strategies)
+    risk_df = run_all_risk_analysis(TICKERS, STRATEGIES)
 
     output_path = "backtest/results/risk_management_summary.csv"
-
     risk_df.to_csv(output_path, index=False)
 
     print("\nRisk Management Summary")
