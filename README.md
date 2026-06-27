@@ -37,3 +37,50 @@ sg-ai-quant-portfolio/
 
 ## Author
 Chae Youngjun | Quant Finance Portfolio | 2026
+
+## Recent Progress: Strategy and Risk Management
+
+### Day 9-11 Summary
+
+I expanded the project from basic backtesting into a multi-strategy risk management framework.
+
+The current analysis compares 5 assets and 5 strategies:
+
+Assets:
+- NVDA
+- MSFT
+- SPY
+- QQQ
+- D05_SI
+
+Strategies:
+- Buy and Hold
+- Current Defensive
+- Trend Only
+- Loose RSI
+- 60-Day Breakout
+
+Key risk metrics added:
+- Total Return
+- Maximum Drawdown
+- Sharpe Ratio
+- Annualized Volatility
+- Daily VaR 95%
+- Daily Expected Shortfall 95%
+- Market Exposure
+
+Main insight:
+The 60-Day Breakout strategy reduced downside risk and volatility by lowering market exposure, but it also reduced upside participation compared with Buy and Hold and Trend Only.
+
+Generated outputs:
+- backtest/results/strategy_experiment_summary.csv
+- backtest/results/risk_management_summary.csv
+- reports/charts/risk_var_95_comparison.png
+- reports/charts/risk_expected_shortfall_comparison.png
+- reports/charts/risk_annualized_volatility_comparison.png
+- reports/charts/risk_market_exposure_comparison.png
+- reports/charts/risk_return_scatter_full.png
+- reports/charts/risk_return_scatter_zoomed_ex_nvda.png
+
+Interview summary:
+I built a standardized strategy comparison and risk management framework across SGX and US assets. The framework evaluates both return and downside risk using VaR, Expected Shortfall, volatility, drawdown, and market exposure.
