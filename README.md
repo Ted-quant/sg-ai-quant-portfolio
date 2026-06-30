@@ -84,3 +84,33 @@ Generated outputs:
 
 Interview summary:
 I built a standardized strategy comparison and risk management framework across SGX and US assets. The framework evaluates both return and downside risk using VaR, Expected Shortfall, volatility, drawdown, and market exposure.
+
+### Day 12: Vectorbt Backtest Validation
+
+I introduced vectorbt as a scalable backtesting engine and tested a simple MA20/MA60 trend-following strategy on SPY.
+
+Main result:
+- Strategy return: 7.75%
+- Benchmark return: 32.75%
+- Maximum drawdown: 19.01%
+- Sharpe ratio: 0.34
+- Total trades: 8
+- Win rate: 42.86%
+
+Key insight:
+The strategy generated a positive return, but it underperformed SPY buy-and-hold. This shows that a simple moving average strategy is not enough on its own and should be improved with stronger filters, risk controls, or machine learning-based signals.
+
+### Day 12: Vectorbt Backtest Validation
+
+I introduced vectorbt as a scalable backtesting engine and tested a simple MA20/MA60 trend-following strategy on SPY.
+
+Main result:
+- Strategy return: 7.75%
+- Benchmark return: 32.75%
+- Maximum drawdown: 19.01%
+- Sharpe ratio: 0.34
+- Total trades: 8
+- Win rate: 42.86%
+
+Key insight:
+The strategy generated a positive return, but it underperformed SPY buy-and-hold. This shows that a simple moving average strategy is not enough on its own and should be improved with stronger filters, risk controls, or machine learning-based signals.
