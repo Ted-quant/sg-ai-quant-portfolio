@@ -114,3 +114,17 @@ Main result:
 
 Key insight:
 The strategy generated a positive return, but it underperformed SPY buy-and-hold. This shows that a simple moving average strategy is not enough on its own and should be improved with stronger filters, risk controls, or machine learning-based signals.
+
+### Day 13: Vectorbt Multi-Asset Backtest
+
+I expanded the vectorbt MA20/MA60 backtest from SPY to five global assets: NVDA, MSFT, SPY, QQQ, and D05_SI.
+
+Main results:
+- NVDA strategy return: 182.33% vs benchmark return: 380.51%
+- MSFT strategy return: -8.83% vs benchmark return: 37.90%
+- SPY strategy return: 7.75% vs benchmark return: 32.75%
+- QQQ strategy return: 0.14% vs benchmark return: 41.56%
+- D05_SI strategy return: 39.53% vs benchmark return: 59.15%
+
+Key insight:
+The MA20/MA60 strategy was highly asset-dependent. It performed well on NVDA and D05_SI, but it underperformed buy-and-hold across the full asset universe. This supports the need for stronger filters, risk controls, and machine learning-based signals.
