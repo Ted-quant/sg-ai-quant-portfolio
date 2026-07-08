@@ -1,0 +1,20 @@
+RandomForest Classification Report
+=================================
+
+Train rows: 2108
+Test rows: 1230
+Accuracy: 0.5398
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.56      0.67      0.61       663
+           1       0.50      0.38      0.44       567
+
+    accuracy                           0.54      1230
+   macro avg       0.53      0.53      0.52      1230
+weighted avg       0.53      0.54      0.53      1230
+
+Confusion Matrix:
+[[446 217]
+ [349 218]]
