@@ -213,7 +213,7 @@ However, the strategy still requires further validation across different market 
 - Compare RandomForest with XGBoost and LightGBM.
 - Convert the final results into an English PDF portfolio report.
 
-## Interview Summary
+## Summary
 
 I built a multi-asset AI quant research pipeline covering SGX and US assets. The project started with manual strategy backtesting and risk metrics, then expanded into vectorbt validation and RandomForest-based ML signal generation.
 
