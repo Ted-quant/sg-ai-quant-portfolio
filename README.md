@@ -220,3 +220,39 @@ I built a multi-asset AI quant research pipeline covering SGX and US assets. The
 The ML model predicts whether each asset will generate a forward 5-trading-day return greater than 1%. Initial results showed that the default 0.50 classification threshold was too conservative, so I tested probability thresholds from 0.40 to 0.60.
 
 Walk-forward validation showed that lower thresholds around 0.40-0.45 generally improved market exposure and helped the strategy participate more in upward market moves. However, further testing on 2025-2026 data and different market regimes is needed before treating the model as robust.
+
+---
+
+## Day 19 — Final Out-of-Sample Test: 2025–2026
+
+I tested whether the probability thresholds selected during the 2023–2024 walk-forward validation period remained effective on a fresh 2025–2026 out-of-sample period.
+
+The results were mixed.
+
+The lower thresholds around 0.40–0.45 did not generalize perfectly across all assets. In the final OOS test, MSFT performed best at 0.50, while NVDA and QQQ performed best at 0.55.
+
+### Key Results
+
+| Asset | Best Threshold | Strategy Return | Benchmark Return | Strategy MDD | Benchmark MDD | Market Exposure |
+|---|---:|---:|---:|---:|---:|---:|
+| D05_SI | 0.40 | 42.86% | 63.30% | -19.61% | -19.26% | 89.36% |
+| MSFT | 0.50 | -0.01% | -10.45% | -20.64% | -34.50% | 51.74% |
+| NVDA | 0.55 | 54.69% | 49.05% | -10.07% | -36.88% | 31.64% |
+| QQQ | 0.55 | 36.20% | 45.12% | -5.70% | -22.77% | 40.21% |
+| SPY | 0.40 | 15.45% | 29.60% | -18.76% | -18.76% | 80.70% |
+
+### Interpretation
+
+The final OOS test showed that a single common probability threshold may not be optimal across all assets.
+
+NVDA was the strongest result. The ML strategy outperformed Buy and Hold while reducing maximum drawdown from -36.88% to -10.07% and using only 31.64% market exposure.
+
+MSFT and QQQ showed that the model may be useful as a downside-risk control tool, even when it does not always maximize total return.
+
+### Main Insight
+
+The model should not be treated as a universal return-maximizing signal. Instead, the results suggest that ML probability signals may be more useful for selective exposure control and risk management.
+
+### Next Step
+
+The next improvement is to test asset-specific thresholds and market regime filters instead of using one common threshold for every asset.
