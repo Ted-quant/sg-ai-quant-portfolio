@@ -302,3 +302,50 @@ A better interpretation is that the model can be used for selective exposure con
 ### Next Step
 
 The next improvement is to compare different regime filters such as 100-day, 150-day, and 200-day moving averages, and then test whether a shorter regime filter improves the balance between return and drawdown.
+
+---
+
+## Day 21 — Regime Filter Sensitivity Test
+
+After testing the 200-day moving average regime filter, I compared different moving average windows to see whether a shorter filter could improve the balance between return and drawdown.
+
+The tested versions were:
+
+1. No filter
+2. 100-day moving average filter
+3. 150-day moving average filter
+4. 200-day moving average filter
+
+The best filter was selected using the Calmar ratio, which measures return relative to maximum drawdown.
+
+### Best Filter by Asset
+
+| Asset | Best Filter | Strategy Return | Benchmark Return | Strategy MDD | Calmar Ratio | Market Exposure |
+|---|---|---:|---:|---:|---:|---:|
+| D05_SI | MA100 | 49.22% | 66.62% | -7.73% | 6.37 | 79.37% |
+| MSFT | No Filter | -7.61% | -7.75% | -26.66% | -0.29 | 55.61% |
+| NVDA | MA200 | 30.22% | 47.18% | -8.37% | 3.61 | 21.39% |
+| QQQ | MA100 | 10.80% | 42.90% | -4.73% | 2.28 | 22.99% |
+| SPY | MA100 | 19.00% | 29.42% | -6.82% | 2.78 | 62.30% |
+
+### Interpretation
+
+The 100-day moving average filter was the strongest general regime filter.
+
+It produced the best return-drawdown balance for D05_SI, QQQ, and SPY.
+
+NVDA was the exception. It performed best with the 200-day moving average filter, likely because NVDA has higher volatility and benefits from a slower defensive trend filter.
+
+MSFT did not show a clear improvement from moving average filters, suggesting that the current technical feature set may not be sufficient for this asset.
+
+### Main Insight
+
+The 200-day moving average filter was not always optimal.
+
+A shorter 100-day moving average filter often provided a better balance between return and drawdown by reacting faster to market recoveries.
+
+The result suggests that regime filters should be selected based on asset behavior rather than applied uniformly across all assets.
+
+### Next Step
+
+The next improvement is to validate asset-specific regime filters through walk-forward testing and then add transaction costs and slippage assumptions.
