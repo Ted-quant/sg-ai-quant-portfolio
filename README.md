@@ -349,3 +349,35 @@ The result suggests that regime filters should be selected based on asset behavi
 ### Next Step
 
 The next improvement is to validate asset-specific regime filters through walk-forward testing and then add transaction costs and slippage assumptions.
+
+---
+
+## Day 22 — Transaction Costs and Slippage Test
+
+I tested whether the ML strategy remained robust after adding transaction costs and slippage.
+
+The cost assumption was:
+
+- Transaction cost: 5 bps per trade
+- Slippage: 5 bps per trade
+- Total cost: 10 bps per position change
+
+### Key Results
+
+| Asset | Gross Return | Net Return | Benchmark Return | Net MDD | Total Turnover |
+|---|---:|---:|---:|---:|---:|
+| D05_SI | 49.22% | 42.94% | 66.62% | -8.28% | 43 |
+| MSFT | -7.61% | -12.38% | -7.75% | -27.83% | 53 |
+| NVDA | 30.22% | 22.28% | 47.18% | -8.92% | 63 |
+| QQQ | 10.80% | 4.77% | 42.90% | -5.21% | 56 |
+| SPY | 19.00% | 14.45% | 29.42% | -7.20% | 39 |
+
+### Interpretation
+
+Transaction costs reduced performance across all assets, but the strategy did not completely collapse.
+
+D05_SI, NVDA, and SPY remained reasonably robust after costs.
+
+MSFT and QQQ weakened after trading frictions, suggesting that those signals require further improvement.
+
+The strategy is best interpreted as a selective, risk-controlled allocation system rather than a universal return-maximizing model.
