@@ -256,3 +256,49 @@ The model should not be treated as a universal return-maximizing signal. Instead
 ### Next Step
 
 The next improvement is to test asset-specific thresholds and market regime filters instead of using one common threshold for every asset.
+
+---
+
+## Day 20 — Asset-Specific Threshold + Regime Filter Test
+
+After the final OOS test, I tested whether asset-specific thresholds and a 200-day moving average regime filter could improve risk control.
+
+The strategy compared two approaches:
+
+1. Asset-specific threshold only
+2. Asset-specific threshold + 200-day moving average regime filter
+
+### Key Result
+
+The regime filter generally reduced maximum drawdown and volatility, but it often reduced total return by lowering market exposure.
+
+| Asset | Strategy Type | Return | Benchmark Return | MDD | Benchmark MDD | Market Exposure |
+|---|---|---:|---:|---:|---:|---:|
+| D05_SI | Threshold Only | 53.03% | 65.79% | -19.10% | -19.26% | 87.80% |
+| D05_SI | Threshold + Regime Filter | 49.90% | 65.79% | -14.49% | -19.26% | 85.94% |
+| MSFT | Threshold Only | -7.61% | -7.75% | -26.66% | -34.50% | 55.61% |
+| MSFT | Threshold + Regime Filter | -6.08% | -7.75% | -12.07% | -34.50% | 15.24% |
+| NVDA | Threshold Only | 68.26% | 47.18% | -23.92% | -36.88% | 37.17% |
+| NVDA | Threshold + Regime Filter | 30.22% | 47.18% | -8.37% | -36.88% | 21.39% |
+| QQQ | Threshold Only | 8.99% | 42.90% | -17.00% | -22.77% | 39.84% |
+| QQQ | Threshold + Regime Filter | 7.03% | 42.90% | -6.00% | -22.77% | 27.81% |
+| SPY | Threshold Only | 20.67% | 29.42% | -18.76% | -18.76% | 81.55% |
+| SPY | Threshold + Regime Filter | 12.61% | 29.42% | -10.00% | -18.76% | 67.65% |
+
+### Interpretation
+
+The 200-day moving average regime filter acted mainly as a defensive risk management layer.
+
+It reduced drawdown across most assets, especially MSFT, NVDA, QQQ, and SPY.
+
+However, it also reduced upside participation, especially for NVDA and SPY.
+
+### Main Insight
+
+The ML strategy should not be framed as a universal return-maximizing model.
+
+A better interpretation is that the model can be used for selective exposure control, while regime filters can reduce downside risk during weak market environments.
+
+### Next Step
+
+The next improvement is to compare different regime filters such as 100-day, 150-day, and 200-day moving averages, and then test whether a shorter regime filter improves the balance between return and drawdown.
