@@ -37,18 +37,19 @@ To avoid look-ahead bias, positions were shifted by one day before calculating s
 
 ## Results
 
-| Asset | Strategy Type | Return | Benchmark Return | Sharpe | Benchmark Sharpe | MDD | Benchmark MDD | Market Exposure |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| D05_SI | Threshold Only | 53.03% | 65.79% | 1.72 | 1.95 | -19.10% | -19.26% | 87.80% |
-| D05_SI | Threshold + Regime Filter | 49.90% | 65.79% | 1.81 | 1.95 | -14.49% | -19.26% | 85.94% |
-| MSFT | Threshold Only | -7.61% | -7.75% | -0.09 | -0.05 | -26.66% | -34.50% | 55.61% |
-| MSFT | Threshold + Regime Filter | -6.08% | -7.75% | -0.41 | -0.05 | -12.07% | -34.50% | 15.24% |
-| NVDA | Threshold Only | 68.26% | 47.18% | 1.23 | 0.80 | -23.92% | -36.88% | 37.17% |
-| NVDA | Threshold + Regime Filter | 30.22% | 47.18% | 1.08 | 0.80 | -8.37% | -36.88% | 21.39% |
-| QQQ | Threshold Only | 8.99% | 42.90% | 0.42 | 1.17 | -17.00% | -22.77% | 39.84% |
-| QQQ | Threshold + Regime Filter | 7.03% | 42.90% | 0.57 | 1.17 | -6.00% | -22.77% | 27.81% |
-| SPY | Threshold Only | 20.67% | 29.42% | 0.82 | 1.06 | -18.76% | -18.76% | 81.55% |
-| SPY | Threshold + Regime Filter | 12.61% | 29.42% | 0.80 | 1.06 | -10.00% | -18.76% | 67.65% |
+```text
+Asset    Strategy Type                Return    Benchmark Return   Sharpe   Benchmark Sharpe   MDD       Benchmark MDD   Market Exposure
+D05_SI   Threshold Only               53.03%        65.79%          1.72         1.95          -19.10%      -19.26%          87.80%
+D05_SI   Threshold + Regime Filter    49.90%        65.79%          1.81         1.95          -14.49%      -19.26%          85.94%
+MSFT     Threshold Only               -7.61%        -7.75%         -0.09        -0.05          -26.66%      -34.50%          55.61%
+MSFT     Threshold + Regime Filter    -6.08%        -7.75%         -0.41        -0.05          -12.07%      -34.50%          15.24%
+NVDA     Threshold Only               68.26%        47.18%          1.23         0.80          -23.92%      -36.88%          37.17%
+NVDA     Threshold + Regime Filter    30.22%        47.18%          1.08         0.80           -8.37%      -36.88%          21.39%
+QQQ      Threshold Only                8.99%        42.90%          0.42         1.17          -17.00%      -22.77%          39.84%
+QQQ      Threshold + Regime Filter     7.03%        42.90%          0.57         1.17           -6.00%      -22.77%          27.81%
+SPY      Threshold Only               20.67%        29.42%          0.82         1.06          -18.76%      -18.76%          81.55%
+SPY      Threshold + Regime Filter    12.61%        29.42%          0.80         1.06          -10.00%      -18.76%          67.65%
+```
 
 ## Interpretation
 

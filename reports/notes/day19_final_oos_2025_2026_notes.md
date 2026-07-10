@@ -28,13 +28,14 @@ To avoid look-ahead bias, the position was shifted by one day before calculating
 
 ## Best Threshold Results
 
-| Asset | Best Threshold | Strategy Return | Benchmark Return | Excess Return | Strategy Sharpe | Benchmark Sharpe | Strategy MDD | Benchmark MDD | Market Exposure |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| D05_SI | 0.40 | 42.86% | 63.30% | -20.44% | 1.45 | 1.90 | -19.61% | -19.26% | 89.36% |
-| MSFT | 0.50 | -0.01% | -10.45% | 10.44% | 0.10 | -0.13 | -20.64% | -34.50% | 51.74% |
-| NVDA | 0.55 | 54.69% | 49.05% | 5.64% | 1.24 | 0.82 | -10.07% | -36.88% | 31.64% |
-| QQQ | 0.55 | 36.20% | 45.12% | -8.92% | 1.49 | 1.22 | -5.70% | -22.77% | 40.21% |
-| SPY | 0.40 | 15.45% | 29.60% | -14.15% | 0.65 | 1.07 | -18.76% | -18.76% | 80.70% |
+```text
+Asset    Best Threshold   Strategy Return   Benchmark Return   Excess Return   Strategy Sharpe   Benchmark Sharpe   Strategy MDD   Benchmark MDD   Market Exposure
+D05_SI        0.40             42.86%            63.30%           -20.44%             1.45              1.90          -19.61%        -19.26%          89.36%
+MSFT          0.50             -0.01%           -10.45%            10.44%             0.10             -0.13          -20.64%        -34.50%          51.74%
+NVDA          0.55             54.69%            49.05%             5.64%             1.24              0.82          -10.07%        -36.88%          31.64%
+QQQ           0.55             36.20%            45.12%            -8.92%             1.49              1.22           -5.70%        -22.77%          40.21%
+SPY           0.40             15.45%            29.60%           -14.15%             0.65              1.07          -18.76%        -18.76%          80.70%
+```
 
 ## Interpretation
 

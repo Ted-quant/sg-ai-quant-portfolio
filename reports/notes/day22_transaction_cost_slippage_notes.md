@@ -27,13 +27,14 @@ gross_strategy_return - trading_cost
 
 ## Results
 
-| Asset | Gross Return | Net Return | Benchmark Return | Net Sharpe | Net MDD | Total Turnover | Cost Drag |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| D05_SI | 49.22% | 42.94% | 66.62% | 1.84 | -8.28% | 43 | 4.30% |
-| MSFT | -7.61% | -12.38% | -7.75% | -0.24 | -27.83% | 53 | 5.30% |
-| NVDA | 30.22% | 22.28% | 47.18% | 0.84 | -8.92% | 63 | 6.30% |
-| QQQ | 10.80% | 4.77% | 42.90% | 0.46 | -5.21% | 56 | 5.60% |
-| SPY | 19.00% | 14.45% | 29.42% | 0.98 | -7.20% | 39 | 3.90% |
+```text
+Asset    Gross Return   Net Return   Benchmark Return   Net Sharpe   Net MDD    Total Turnover   Cost Drag
+D05_SI      49.22%        42.94%          66.62%            1.84      -8.28%          43           4.30%
+MSFT        -7.61%       -12.38%          -7.75%           -0.24     -27.83%          53           5.30%
+NVDA        30.22%        22.28%          47.18%            0.84      -8.92%          63           6.30%
+QQQ         10.80%         4.77%          42.90%            0.46      -5.21%          56           5.60%
+SPY         19.00%        14.45%          29.42%            0.98      -7.20%          39           3.90%
+```
 
 ## Interpretation
 
