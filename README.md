@@ -381,3 +381,33 @@ D05_SI, NVDA, and SPY remained reasonably robust after costs.
 MSFT and QQQ weakened after trading frictions, suggesting that those signals require further improvement.
 
 The strategy is best interpreted as a selective, risk-controlled allocation system rather than a universal return-maximizing model.
+
+---
+
+## Day 23 — Portfolio-Level Allocation Test
+
+I combined the individual ML strategies into portfolio-level allocation systems.
+
+Two portfolios were tested:
+
+1. All Assets ML Portfolio: D05_SI, MSFT, NVDA, QQQ, SPY
+2. Robust Assets ML Portfolio: D05_SI, NVDA, SPY
+
+Both ML portfolios included transaction costs and slippage.
+
+### Key Results
+
+| Portfolio | Total Return | Volatility | Sharpe | MDD | Calmar Ratio |
+|---|---:|---:|---:|---:|---:|
+| All Assets ML Net | 15.54% | 8.26% | 1.25 | -6.66% | 2.33 |
+| All Assets Buy & Hold | 28.77% | 19.87% | 0.98 | -20.32% | 1.42 |
+| Robust Assets ML Net | 28.96% | 8.95% | 2.01 | -5.91% | 4.90 |
+| Robust Assets Buy & Hold | 43.88% | 20.64% | 1.32 | -21.68% | 2.02 |
+
+### Interpretation
+
+The ML portfolios did not maximize total return, but they significantly improved downside risk control.
+
+The Robust Assets ML Portfolio was the strongest result. It reduced maximum drawdown from -21.68% to -5.91% and improved Sharpe ratio from 1.32 to 2.01 compared with the corresponding Buy and Hold portfolio.
+
+This suggests that the ML strategy is more effective as a risk-controlled allocation system than as a pure return-maximizing model.
