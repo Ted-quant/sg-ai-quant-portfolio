@@ -306,3 +306,103 @@ Detailed research notes are stored in:
 Chae Youngjun  
 Quant Finance Portfolio Project  
 Singapore Edition, 2026
+---
+
+## Final Model Selection
+
+After a series of model validation experiments, the final strategy was selected based on risk-adjusted portfolio performance rather than raw return maximization.
+
+```text
+Final Model Configuration
+
+Model: ExtraTreesClassifier
+Feature Set: Full Features
+Target: 5-day forward return > +1%
+Position Sizing: Binary
+Portfolio: Robust Assets
+Assets: D05_SI, NVDA, SPY
+Transaction Cost + Slippage: 10 bps per position change
+```
+
+The final model was selected after testing several alternative designs:
+
+```text
+Experiment Area              Final Decision
+Model comparison             ExtraTreesClassifier
+Feature importance           ma60_ratio, volatility_20d, rsi_14 were most important
+Ensemble averaging           ExtraTrees alone outperformed ensemble methods
+Feature set ablation         Full Features provided the best balance
+Target definition            5-day +1% target was the strongest
+Position sizing              Binary buy-or-cash sizing remained strongest
+```
+
+## Final Backtest Result
+
+```text
+Strategy               Return    Volatility   Sharpe   MDD       Calmar   VaR 95   ES 95
+Buy & Hold              54.25%     20.63%      1.46   -22.17%     2.45    -1.94%   -2.97%
+Final ExtraTrees ML     38.17%      9.57%      2.24   -10.77%     3.55    -0.71%   -1.30%
+```
+
+The Buy & Hold portfolio produced a higher raw return. However, the Final ExtraTrees ML strategy delivered stronger risk-adjusted performance.
+
+Compared with Buy & Hold, the final ML model:
+
+```text
+Reduced volatility from 20.63% to 9.57%
+Reduced maximum drawdown from -22.17% to -10.77%
+Improved Sharpe ratio from 1.46 to 2.24
+Improved Calmar ratio from 2.45 to 3.55
+Reduced 95% VaR from -1.94% to -0.71%
+Reduced 95% Expected Shortfall from -2.97% to -1.30%
+```
+
+## Final Model Interpretation
+
+The final strategy is best understood as a risk-controlled portfolio allocation model, not a pure return-maximizing trading model.
+
+The model did not attempt to stay fully invested at all times. Instead, it used machine learning probability signals to decide when market conditions were favorable enough to hold each asset.
+
+The strongest risk-control example was NVDA:
+
+```text
+NVDA Buy & Hold MDD: -36.88%
+NVDA ML Strategy MDD: -6.50%
+NVDA ML Market Exposure: 5.07%
+```
+
+This shows that the model reduced exposure to high-volatility assets when the predicted risk-adjusted opportunity was not strong enough.
+
+## Why the Final Model Was Selected
+
+The final model was not chosen by assumption. It was selected through empirical validation.
+
+Several more complex alternatives were tested, including ensemble averaging and probability-based position sizing. However, these methods did not improve the overall portfolio result.
+
+```text
+ExtraTrees + Full Features + 5D_1pct target + Binary sizing
+```
+
+remained the strongest overall configuration because it provided the best balance between return, volatility, Sharpe ratio, drawdown control, and Calmar ratio.
+
+## Key Portfolio Insight
+
+```text
+The final ML strategy sacrificed some upside return, but it significantly improved downside protection and risk-adjusted performance.
+```
+
+This makes the project suitable as a portfolio allocation and risk management case study rather than a simple directional trading model.
+
+## Future Extensions
+
+Future versions of this project could extend the current daily-data model into a more production-style trading workflow:
+
+```text
+1. Implement the strategy in QuantConnect / LEAN
+2. Test intraday data such as hourly or 15-minute bars
+3. Add a more detailed transaction cost and slippage model
+4. Build an Alpaca paper-trading signal pipeline
+5. Create a Streamlit dashboard for portfolio monitoring
+```
+
+These extensions would help test whether the current research model can be transferred into a more realistic algorithmic trading environment.
