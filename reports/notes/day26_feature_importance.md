@@ -83,21 +83,9 @@ The ExtraTrees model's strongest signals came from medium-term trend, volatility
 
 This is useful because the model can now be explained as more than a black-box classifier. It used financially meaningful indicators to generate trading signals.
 
-## Interview Summary
+## Summary
 
-```text
 After identifying ExtraTrees as the strongest model candidate, I analyzed feature importance to understand what the model was using to make trading decisions. The most important features were the 60-day moving-average ratio, 20-day volatility, and RSI. This suggests that the model was not simply chasing short-term returns, but was combining trend, risk, and overbought or oversold information.
-```
 
-## Files Generated
 
-```text
-backtest/results/extratrees_feature_importance_by_asset.csv
-backtest/results/extratrees_feature_importance_average.csv
-reports/charts/feature_importance_average_extratrees.png
-reports/charts/feature_importance_D05_SI.png
-reports/charts/feature_importance_MSFT.png
-reports/charts/feature_importance_NVDA.png
-reports/charts/feature_importance_QQQ.png
-reports/charts/feature_importance_SPY.png
-```
+
