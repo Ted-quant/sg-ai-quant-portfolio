@@ -74,3 +74,24 @@ Controlled recent volatility
 This extension is intended to show that the local research model can be translated into a production-style algorithmic trading architecture.
 
 The goal is not to replace the local backtest, but to demonstrate awareness of the difference between research backtesting and platform-based algorithmic execution.
+
+---
+
+## Web Backtest Verification
+
+A simplified QuantConnect web backtest prototype was successfully executed using SPY and NVDA daily data.
+
+```text
+Platform: QuantConnect Web IDE
+Assets: SPY, NVDA
+Initial Cash: $100,000
+Final Equity: $474,203.31
+Return: 374.20%
+Net Profit: $351,380.43
+Fees: -$1,921.14
+```
+
+This result should be interpreted as a platform implementation test rather than the final validated ML strategy result.
+
+The purpose of this step was to confirm that the local Python research workflow could be translated into QuantConnect's event-driven algorithm structure.
+
