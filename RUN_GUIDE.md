@@ -54,3 +54,11 @@ Final ExtraTrees ML     38.17%      9.57%      2.24   -10.77%     3.55
 ## 7. Interpretation
 
 The final model did not maximize raw return. Instead, it improved risk-adjusted performance by reducing volatility and maximum drawdown while improving Sharpe and Calmar ratios.
+
+## 8. Run the Streamlit dashboard
+
+```bash
+streamlit run dashboard/app.py
+```
+
+The dashboard summarizes the final model configuration, performance table, equity curve, asset-level results, and interpretation.
