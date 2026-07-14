@@ -4,11 +4,13 @@ AI-powered risk-controlled quantitative trading strategy for Singapore and US eq
 
 ## Project Overview
 
+This project was motivated by my coursework in Equity Investment and Risk Management. Through these courses, I became interested in how investment decisions should be evaluated not only by raw return, but also by volatility, drawdown, downside risk, and portfolio-level risk control. I built this project to translate those classroom concepts into a practical Python-based machine learning portfolio model.
+
 This project builds an end-to-end quantitative finance research pipeline covering data collection, strategy backtesting, risk analysis, machine learning signal generation, transaction cost testing, and portfolio-level allocation.
 
 The project is designed as a GitHub portfolio for Singapore quantitative finance, systematic trading, and financial analytics roles.
 
-The final strategy is best interpreted as a **risk-controlled portfolio allocation system**, not a universal return-maximizing trading model.
+The final strategy is best interpreted as a **risk-controlled portfolio allocation system**.
 
 ## Final Strategy Summary
 

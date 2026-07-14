@@ -4,6 +4,8 @@
 
 This project develops a machine-learning-based portfolio allocation model using daily market data.
 
+This project was motivated by my university coursework in Equity Investment and Risk Management. In Equity Investment, I learned how investors evaluate assets, returns, and portfolio performance. In Risk Management, I learned that investment decisions should also consider volatility, drawdown, Value at Risk, Expected Shortfall, and downside protection. This project was designed to connect those concepts by building a machine-learning-based portfolio allocation model that focuses on risk-adjusted performance rather than raw return alone.
+
 The goal of the project is not to build a model that always maximizes raw return. Instead, the goal is to build a risk-controlled portfolio allocation system that improves risk-adjusted performance compared with a simple Buy & Hold benchmark.
 
 The final strategy uses an ExtraTreesClassifier to generate trading signals across a robust asset portfolio consisting of D05_SI, NVDA, and SPY.
