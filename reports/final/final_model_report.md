@@ -166,3 +166,20 @@ Future versions of this project could include:
 The final ExtraTrees ML strategy did not outperform Buy & Hold in raw return. However, it significantly improved risk-adjusted performance by reducing volatility, maximum drawdown, Value at Risk, and Expected Shortfall while improving Sharpe and Calmar ratios.
 
 Therefore, the final model is best interpreted as a risk-controlled machine learning portfolio allocation system.
+---
+
+## Final Project Status
+
+This project is now considered a completed v1.1 portfolio project.
+
+The local Python research workflow successfully produced a final machine learning portfolio allocation model using ExtraTreesClassifier. The final model did not maximize raw return, but it improved key risk-adjusted metrics compared with Buy & Hold, including volatility, maximum drawdown, Sharpe ratio, Calmar ratio, Value at Risk, and Expected Shortfall.
+
+In addition, a simplified QuantConnect web backtest prototype was successfully executed using SPY and NVDA. This prototype does not represent a full deployment of the trained ExtraTrees model, but it verifies that the project's core trading logic can be translated into an event-driven algorithmic trading platform.
+
+Overall, this project demonstrates the full research workflow from investment idea to data collection, feature engineering, model validation, risk analysis, portfolio construction, dashboard presentation, and platform implementation testing.
+
+## Final Summary
+
+```text
+I built an end-to-end machine learning portfolio allocation project that connects Equity Investment, Risk Management, and Python-based quantitative research. The final ExtraTrees model improved risk-adjusted performance compared with Buy & Hold, and I also extended the project into a QuantConnect web prototype to verify that the strategy logic could run in an event-driven algorithmic trading environment.
+```

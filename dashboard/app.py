@@ -264,3 +264,29 @@ st.write(
     - Expanded asset universe including SGX, US equities, ETFs, and FX
     """
 )
+
+st.markdown("---")
+
+st.header("QuantConnect Web Prototype")
+
+st.markdown(
+    """
+A simplified QuantConnect web backtest prototype was successfully executed using SPY and NVDA daily data.
+
+This prototype is not the full trained ExtraTrees model. It is a platform implementation test showing that the local Python research workflow can be translated into QuantConnect's event-driven algorithmic trading structure.
+"""
+)
+
+st.code(
+    """
+Platform: QuantConnect Web IDE
+Assets: SPY, NVDA
+Initial Cash: $100,000
+Final Equity: $474,203.31
+Return: 374.20%
+Net Profit: $351,380.43
+Fees: -$1,921.14
+Interpretation: Platform prototype, not final validated ML result
+""",
+    language="text",
+)
