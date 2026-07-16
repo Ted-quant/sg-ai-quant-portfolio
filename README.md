@@ -1,4 +1,4 @@
-# 🇸🇬 SG AI Quant Portfolio
+# 🇸🇬 Risk-Controlled ML Portfolio Allocator
 
 AI-powered risk-controlled quantitative portfolio allocation model for Singapore and US equity markets.
 
